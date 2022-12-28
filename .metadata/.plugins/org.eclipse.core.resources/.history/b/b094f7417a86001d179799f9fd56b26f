@@ -1,0 +1,15 @@
+package dev.bank;
+
+import java.io.IOException;
+
+public class MainApplication {
+	
+	public static void main(String[] args) throws IOException {
+		BankStatementAnalyzer analyzer = new BankStatementAnalyzer(null);
+		
+		
+		
+		analyzer.analyze(null);
+	}
+
+}

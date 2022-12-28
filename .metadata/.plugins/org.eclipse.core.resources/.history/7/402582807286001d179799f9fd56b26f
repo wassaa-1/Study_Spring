@@ -1,0 +1,11 @@
+package dev.bank.data;
+
+import java.util.List;
+
+import dev.bank.model.BankTransaction;
+
+public interface BankStatementParser {
+
+	List<BankTransaction> parseLinesFromCSV(List<String> lines);
+	
+}

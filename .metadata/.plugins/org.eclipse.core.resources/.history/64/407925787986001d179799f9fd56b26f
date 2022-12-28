@@ -1,0 +1,37 @@
+package dev.bank;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.Month;
+import java.util.List;
+
+import dev.bank.data.BankStatementCSVParser;
+import dev.bank.data.BankStatementParser;
+import dev.bank.model.BankTransaction;
+import dev.bank.service.BankStatementProcessor;
+
+public class BankStatementAnalyzer {
+	private static final String RESOURCES = "src/main/resources/";
+	
+	public void analyze(String fileName) throws IOException {
+		final Path path = Paths.get(RESOURCES + fileName);
+		final List<String> lines = Files.readAllLines(path);
+		
+		final BankStatementParser Parser = new BankStatementCSVParser();
+		List<BankTransaction> bankTransactions = Parser.parseLinesFrom(lines);
+		
+		BankStatementProcessor processor = new BankStatementProcessor(bankTransactions);
+		
+		collectSummary(processor);
+	}
+	
+	private static void collectSummary(BankStatementProcessor processor) {
+		System.out.println("총 입출금 내역은 " + processor.calculateTotalAmount());
+		
+		System.out.println("1월의 입출금 내역은 " + processor.calculdateTotalInMonth(Month.JANUARY));
+		
+		System.out.println("Salary(급여) 카테고리 내역은 " + processor.calculateTotalForCategory("Salary"));
+	}
+}

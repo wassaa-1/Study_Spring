@@ -1,0 +1,6 @@
+package dev.bank.data;
+
+public interface BankStatementParser {
+	BankStatementTSVParser,
+	BankStatementCSVParser
+}

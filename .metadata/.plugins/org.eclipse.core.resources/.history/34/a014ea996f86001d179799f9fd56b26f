@@ -1,0 +1,48 @@
+package dev.bank.service;
+
+import java.time.Month;
+import java.util.ArrayList;
+import java.util.List;
+
+import dev.bank.model.BankTransaction;
+
+// 입출금 관련 도메인(비즈니스)로직을 처리하는 클래스
+public class BankStatementProcessor {
+	
+	private final List<BankTransaction> bankTransactions;
+	// The blank final field bankTransaction may not have been initialized
+	
+	public BankStatementProcessor(List<BankTransaction> bankTransactions) {
+		super();
+		this.bankTransactions = bankTransactions;
+	}
+	
+	// 총 입출금 내역 금액 반환
+	public double calculateTotalAmount() {
+		double total = 0d;
+		for (BankTransaction bankTransaction : bankTransactions) {
+			total += bankTransaction.getAmount();
+		}
+		return total;
+	}
+	
+	// 특정 월에 대한 입출금 리스트 반환
+	public List<BankTransaction> calculdateTotalInMonth(Month month) {
+		final List<BankTransaction> bankTransactionsInMonth = new ArrayList<>();
+		for (BankTransaction bankTransaction : bankTransactionsInMonth) {
+			if (bankTransaction.getDate().getMonth() == month) {
+				bankTransactionsInMonth.add(bankTransaction);
+			}
+		}
+		return bankTransactionsInMonth;
+	}
+	
+	// 카테고리별(description 필드) 총 입출금 내역(합계) 반환
+	public double calculateTotalForCategory(String category) {
+		double total = 0;
+		for (BankTransaction bankTransaction : bankTransactions) {
+			if (bankTransaction.getDescription().equals(category)) total += bankTransaction.getAmount();
+		}
+		return total;
+	}
+}

@@ -1,0 +1,18 @@
+package dev.bank;
+
+import java.io.IOException;
+
+import dev.bank.data.BankStatementCSVParser;
+import dev.bank.data.BankStatementParser;
+
+public class MainApplication {
+	
+	public static void main(String[] args) throws IOException {
+		BankStatementFactory factory = new BankStatementFactory();
+		
+		BankStatementAnalyzer analyzer = factory.getAnalyzer();
+		
+		analyzer.analyze("bank-data-simple.csv");
+	}
+
+}

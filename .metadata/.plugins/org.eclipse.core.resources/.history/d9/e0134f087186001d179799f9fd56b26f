@@ -1,0 +1,30 @@
+package dev.bank;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.Month;
+import java.util.List;
+
+import dev.bank.data.BankStatementCSVParser;
+import dev.bank.model.BankTransaction;
+import dev.bank.service.BankStatementProcessor;
+
+public class MainApplication {
+	private static final String RESOURCES = "src/main/resources/";
+	
+	public static void main(String[] args) throws IOException {
+		final Path path = Paths.get(RESOURCES + "bank-data-simple.csv");
+		final List<String> lines = Files.readAllLines(path);
+		
+		final BankStatementCSVParser tsvParser = new BankStatementCSVParser();
+		List<BankTransaction> bankTransactions = tsvParser.parseLinesFromCSV(lines);
+		
+		BankStatementProcessor processor = new BankStatementProcessor(bankTransactions);
+		System.out.println(processor.calculdateTotalInMonth(Month.JANUARY));
+		
+
+	}
+
+}

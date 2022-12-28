@@ -1,0 +1,7 @@
+package dev.bank;
+
+public class BankStatementFactory {
+	public BankStatementAnalyzer getAnalyzer() {
+		return new BankStatementAnalyzer();
+	}
+}
