@@ -1,0 +1,4 @@
+3계층 구조(3 layer architecture)
+presentation tier - 'web' 패키지
+Business(Application) tier - core/application 패키지 내 작성
+data(infrastructure) tier - core/infrastructure 패키지 내 작성
