@@ -23,4 +23,11 @@ public interface UserFinder {
      * @throws java.util.NoSuchElementException - User의 id가 유효하지 않을 때
      */
     User findUser(String id);
+
+    /**
+     * 전달된 password와 일치하는 하나의 User 반환
+     * @param password
+     * @return User
+     */
+    User findByPassword(String password);
 }
