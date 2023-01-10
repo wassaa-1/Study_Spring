@@ -1,11 +1,12 @@
 package dev.bank.bankstatement.web.controller;
 
-import dev.bank.bankstatement.core.application.UserEditor;
-import dev.bank.bankstatement.core.application.UserFinder;
-import dev.bank.bankstatement.core.application.UserManager;
-import dev.bank.bankstatement.core.domain.User;
+import dev.bank.bankstatement.core.user.application.UserEditor;
+import dev.bank.bankstatement.core.user.application.UserFinder;
+import dev.bank.bankstatement.core.user.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -49,12 +50,19 @@ public class UserRestController {
     }
 
     @PostMapping
-    public String createUser(@RequestBody User newUser) {
+    public String createUser(@RequestBody @Validated User.Request newUser, BindingResult br) {
         logger.info("-- POST: localhost:8080/api/users, createUser() called");
         logger.info("-- @RequestBody User: {}", newUser);
 
-        return editor.create(newUser);
+        // ** BindingResult 파라미터는 @Validated annotation이 부여된 파라미터 바로 뒤에 작성해야함
+        if (br.hasErrors()) {
+            return "뭐하세요?";
+        }
+
+//        return editor.create(newUser);
+        return null;
     }
+
 
     @PutMapping
     public User updateUser(@RequestBody User updateUser) {

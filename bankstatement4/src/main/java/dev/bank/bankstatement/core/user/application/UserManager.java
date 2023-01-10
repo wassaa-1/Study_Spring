@@ -1,9 +1,8 @@
-package dev.bank.bankstatement.core.application;
+package dev.bank.bankstatement.core.user.application;
 
-import dev.bank.bankstatement.core.domain.User;
-import dev.bank.bankstatement.core.infrastructure.UserRepository;
+import dev.bank.bankstatement.core.user.domain.User;
+import dev.bank.bankstatement.core.user.infrastructure.UserRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.*;
 

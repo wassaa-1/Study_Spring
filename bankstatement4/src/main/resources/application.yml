@@ -2,7 +2,7 @@ logging:
   pattern:
     console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
   level:
-    root: info
+    dev.bank: DEBUG
 
 spring:
   # DB 연결
@@ -12,5 +12,10 @@ spring:
     username: sa
   jpa:
     show-sql: true
-    hibernate:
-      ddl-auto: create
+    hibernate.hbm2ddl.auto: update
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+#    hibernate:
+#      ddl-auto: create

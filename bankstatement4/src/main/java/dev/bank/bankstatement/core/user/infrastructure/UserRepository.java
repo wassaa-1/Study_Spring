@@ -1,6 +1,6 @@
-package dev.bank.bankstatement.core.infrastructure;
+package dev.bank.bankstatement.core.user.infrastructure;
 
-import dev.bank.bankstatement.core.domain.User;
+import dev.bank.bankstatement.core.user.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
